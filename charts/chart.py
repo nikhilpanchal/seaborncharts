@@ -54,6 +54,7 @@ def bar(df):
     # Takes in a hue parameter which is the name of a column in the data
     # Passing in the hue parameter produces a grouped bar chart with a bar in each group holding a different color based
     # on the value of the column
+    # Side tidbit to note: Colors are a lot nicer without hue specified.
     sns.barplot(x='Type 2', y='Total', data=df)
 
 
@@ -64,7 +65,7 @@ def factor_plot(df):
     # subplots
     # Here, all rows with the same value of the Stage column are grouped together. And then each group is plotted in its
     # own sub-plot
-    # So instead of using hue to create a grouped bar chart, you can use factorplot and the col para, to create a
+    # So instead of using hue to create a grouped bar chart, you can use factorplot and the col param, to create a
     # separate graph for each bar type.
     # You can also change bar to line to plot a line chart in different sub-plots
     sns.factorplot(x='Name', y='Total', data=df, col='Stage', kind='bar')
