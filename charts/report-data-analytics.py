@@ -55,21 +55,29 @@ def get_time_date(count):
 def plot_histogram(column, axis):
     data = get_bar_data(100)
     bins = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90,100]
-    ax = sns.distplot(data[column], bins=bins, hist=True, kde=True, rug=False, ax=axis)
+    ax = sns.distplot(data[column], bins=bins, hist=True, kde=False, rug=False, ax=axis)
     ax.set_xticks(bins)
 
     return ax
 
 
-def plot_multiple_sub_plots():
-    fig, axes = plt.subplots(ncols=2, nrows=1)
+def plot_line(axis):
+    data = get_time_date(10)
+    data.plot(kind='line', ax=axis)
+    # sns.lineplot(x=data.index, y=['0%', '10%'], data=data)
 
-    plot_histogram('client_accuracy', axes[0])
-    plot_histogram('benchmark_accuracy', axes[1])
+
+def plot_multiple_sub_plots():
+    grid = plt.GridSpec(2, 2, wspace=0.1)
+
+    plot_histogram('client_accuracy', plt.subplot(grid[0, 0]))
+    plot_histogram('benchmark_accuracy', plt.subplot(grid[0, 1]))
+    plot_line(plt.subplot(grid[1, :]))
 
 
 if __name__ == '__main__':
     sns.set_style(seaborn_styles[4])
     plot_multiple_sub_plots()
+    # plot_line(None)
 
     plt.show()
