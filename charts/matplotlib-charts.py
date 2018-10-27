@@ -45,6 +45,7 @@ def plot():
         else:
             s = '${:1.0f}K'.format(val * 1e-3)
         return s
+
     formatter = FuncFormatter(currency)
 
     # You use the ax object to pass the formatter to the right axis
@@ -52,11 +53,17 @@ def plot():
 
     # To add another plot to this chart simple make a call to the ax object for the plot that you want
     # Add a horizontal line on the average revenue value
-    ax.axhline(np.mean(group_data), ls='--')
+    ax.axhline(np.mean(group_data), ls='--', color='r')
 
     # Annotate new companies
     for group in [3, 5, 8]:
         ax.text(group, 140000, "New Company", fontsize=10, horizontalalignment="center")
+
+    # To save the figure, you simply call fig.savefig() with the file name in any of the supported formats
+    # To view the supported formats you look
+    print(fig.canvas.get_supported_filetypes())
+
+    # fig.savefig('chart.png')
 
 
 if __name__ == '__main__':
